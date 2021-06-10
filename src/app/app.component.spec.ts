@@ -25,4 +25,8 @@ describe('AppComponent', () => {
     const app = fixture.componentInstance;
     expect(app.title).toEqual('presente');
   });
+
+  it(`Should fail`, () => {
+    expect(true).toBeFalsy();
+  });
 });
