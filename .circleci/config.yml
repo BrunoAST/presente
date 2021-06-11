@@ -2,17 +2,15 @@ version: 2.1
 
 jobs:
       build-job:
-        executor: browser-tools/default
-        # docker:
-        #     - image: circleci/node:14.17.0
-            # - image: 'cimg/node:13.12-browser'
+        docker:
+            - image: circleci/node:14.17.0
+            - image: 'cimg/node:13.12-browser'
 
         working_directory: ~/presente
 
         steps:
             - checkout
-            - browser-tools/install-browser-tools:
-                chrome-version: 85.0.4183.102
+            - browser-tools/install-browser-tools
 
             - run:
                 command: |
