@@ -5,10 +5,10 @@
         "ng": "ng",
         "start": "ng serve --open",
         "build": "ng build",
-        "build-prod": "ng build --configuration=production",
+        "build-prod": "ng build --configuration production",
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
-        "test-ci": "ng test --watch=false --reporters junit --browsers ChromeHeadless",
+        "test-ci": "ng test --watch=false --reporters junit --browsers ChromeNoSandbox",
         "test-coverage": "ng test --watch=false --sourceMap=true --codeCoverage=true --browsers ChromeHeadless"
     },
     "private": true,
