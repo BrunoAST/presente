@@ -1,13 +1,10 @@
 version: 2.1
 
-orbs:
-  browser-tools: circleci/browser-tools@1.1.3
-
 jobs:
       build-job:
         docker:
             - image: circleci/node:14.17.0
-            - image: cimg/node:13.12-browser
+            - image: 'cimg/node:13.12-browser'
 
         working_directory: ~/presente
 
@@ -29,8 +26,8 @@ jobs:
                     # fallback to using the latest cache if no exact match is found
                     - v1-dependencies-
 
-            - run: yarn install
-            - run: yarn run build
+            - run: npm install
+            - run: npm run build-prod
 
             - save_cache:
                 paths:
@@ -42,7 +39,10 @@ jobs:
                 key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }} 
 
             # run tests!
-            - run: yarn run test:unit 
+            - run: npm run test-ci
+
+orbs:
+  browser-tools: circleci/browser-tools@1.1.3
 
 workflows:
   version: 2
