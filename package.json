@@ -8,7 +8,7 @@
         "build-prod": "ng build --configuration production",
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
-        "test-ci": "ng test --watch=false --reporters junit --browsers ChromeNoSandbox",
+        "test-ci": "ng test --watch=false --reporters junit --browsers FirefoxCustom",
         "test-coverage": "ng test --watch=false --sourceMap=true --codeCoverage=true --browsers ChromeHeadless"
     },
     "private": true,
@@ -36,6 +36,7 @@
         "karma": "~6.3.0",
         "karma-chrome-launcher": "~3.1.0",
         "karma-coverage": "~2.0.3",
+        "karma-firefox-launcher": "^2.1.1",
         "karma-jasmine": "~4.0.0",
         "karma-jasmine-html-reporter": "^1.5.0",
         "karma-junit-reporter": "^2.0.1",
