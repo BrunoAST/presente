@@ -41,7 +41,7 @@ jobs:
             ${{ runner.os }}-node-
       - name: build
         run: |
-          npx ng build --prod
+          npm run build-prod
       # - uses: ./
       #   id: vercel-action-staging
       #   with:
