@@ -33,7 +33,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: amondnet/vercel-action@v20
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -53,6 +52,7 @@ jobs:
           #   staging.angular.vercel-action.amond.dev
           #   pr-{{PR_NUMBER}}.angular.vercel-action.amond.dev
       - uses: ./
+      - uses: amondnet/vercel-action@v20
         id: vercel-action-production
         if: github.event_name == 'push'
         with:
