@@ -53,11 +53,9 @@ jobs:
           #   pr-{{PR_NUMBER}}.angular.vercel-action.amond.dev
       # - uses: ./
       - uses: amondnet/vercel-action@v20
-        id: vercel-action-production
-        if: github.event_name == 'push'
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           working-directory: dist
-          vercel-args: '--prod '
+          vercel-args: '--prod'
