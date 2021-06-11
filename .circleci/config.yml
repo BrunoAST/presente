@@ -1,10 +1,11 @@
 version: 2.1
 
 orbs:
-  browser-tools: circleci/browser-tools@1.1.0
+    browser-tools: circleci/browser-tools@1.1.0
+    vercel: i-am-jeetu/vercel@1.0.0
 
 jobs:
-      build-job:
+    build-job:
         docker:
             - image: cimg/node:15.0.1-browsers
             # - image: 'cimg/node:13.12-browser'
@@ -16,39 +17,51 @@ jobs:
             - checkout
 
             - run:
-                command: |
-                    google-chrome --version
-                name: Check install
+                  command: |
+                      google-chrome --version
+                  name: Check install
 
             # Download and cache dependencies
             - restore_cache:
-                keys:
-                    - v1-dependencies-{{ checksum "package.json" }}
-                    # fallback to using the latest cache if no exact match is found
-                    - v1-dependencies-
+                  keys:
+                      - v1-dependencies-{{ checksum "package.json" }}
+                      # fallback to using the latest cache if no exact match is found
+                      - v1-dependencies-
 
             - run: npm install
             - run: npm run build-prod
 
             - save_cache:
-                paths:
-                    - node_modules
-                    - dist
-                    - package.json
-                key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }} 
+                  paths:
+                      - node_modules
+                      - dist
+                      - package.json
+                  key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
 
             # run tests!
             - run: npm run test-ci
 
-workflows:
-  version: 2
+    deploy-job:
+        executor: vercel/default
+        steps:
+            - checkout
+            - vercel/install
+            - vercel/check-authentication
+            - run:
+                command: >
+                    echo "The command above installs Vercel, the command below deploys.
+                    What you do inbetween is up to you!"
+            - vercel/deploy
 
-  -deploy:
-    jobs:
-      - build-job
-      # - deploy-job:
-      #     requires:
-      #       - build-job
+workflows:
+    version: 2
+
+    -deploy:
+        jobs:
+            - build-job
+            - deploy-job:
+                  requires:
+                      - build-job
 filters:
-  branches:
-    only: master
+    branches:
+        only: master
