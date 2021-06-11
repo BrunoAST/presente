@@ -40,7 +40,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
             
-      - name: build
       - run: npm i
       - run: npm run build-prod
       # - uses: ./
