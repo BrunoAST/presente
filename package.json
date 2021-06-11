@@ -8,7 +8,7 @@
         "build-prod": "ng build --configuration production",
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
-        "test-ci": "ng test --watch=false --reporters junit --browsers Firefox",
+        "test-ci": "ng test --watch=false --reporters junit --browsers ChromeHeadless",
         "test-coverage": "ng test --watch=false --sourceMap=true --codeCoverage=true --browsers ChromeHeadless"
     },
     "private": true,
