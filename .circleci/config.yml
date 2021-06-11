@@ -3,7 +3,7 @@ version: 2.1
 jobs:
       build-job:
         docker:
-            - image: circleci/node:14.17.0
+            # - image: circleci/node:14.17.0
             - image: 'cimg/node:13.12-browser'
 
         working_directory: ~/presente
