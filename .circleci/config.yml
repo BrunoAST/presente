@@ -35,8 +35,6 @@ jobs:
                     - node_modules
                     - dist
                     - package.json
-                    - firebase.json
-                    - .firebaserc
                 key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }} 
 
             # run tests!
