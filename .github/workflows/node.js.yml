@@ -51,7 +51,7 @@ jobs:
           # alias-domains: |
           #   staging.angular.vercel-action.amond.dev
           #   pr-{{PR_NUMBER}}.angular.vercel-action.amond.dev
-      - uses: ./
+      # - uses: ./
       - uses: amondnet/vercel-action@v20
         id: vercel-action-production
         if: github.event_name == 'push'
