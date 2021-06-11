@@ -2,7 +2,7 @@ version: 2.1
 
 orbs:
     browser-tools: circleci/browser-tools@1.1.0
-    vercel: i-am-jeetu/vercel@1.0.0
+    heroku: circleci/heroku@1.2.6
 
 jobs:
     build-job:
@@ -42,16 +42,15 @@ jobs:
             - run: npm run test-ci
 
     deploy-job:
-        executor: vercel/default
+        executor: heroku/default
         steps:
-            - checkout
-            - vercel/install
-            - vercel/check-authentication
-            - run:
-                command: >
-                    echo "The command above installs Vercel, the command below deploys.
-                    What you do inbetween is up to you!"
-            - vercel/deploy
+        - checkout
+        - heroku/install
+        - run:
+            command: >
+                echo "The command above installs Heroku, the command below deploys.
+                What you do inbetween is up to you!"
+        - heroku/deploy-via-git
 
 workflows:
     version: 2
