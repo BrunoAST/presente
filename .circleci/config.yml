@@ -30,7 +30,7 @@ jobs:
             # Test the source code
             - run:
                 name: Testing
-                command: ng test --watch=false --reporters junit --browsers FirefoxCustom
+                command: npm run test-ci
 
         workflows:
         version: 2.1
