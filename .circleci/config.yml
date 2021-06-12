@@ -44,19 +44,23 @@ jobs:
     deploy-job:
         executor: heroku/default
         steps:
-        - checkout
-        - heroku/install
-        - run: heroku/deploy-via-git
+            - checkout
+            - heroku/install
+            - run: heroku/deploy-via-git
 
 workflows:
     version: 2
 
-    -deploy:
+    -build:
         jobs:
             - build-job
-            - deploy-job:
-                  requires:
-                      - build-job
+            # - deploy-job:
+            #       requires:
+            #           - build-job
+
+    -deploy:
+        jobs:
+            - heroku/deploy-via-git
 filters:
     branches:
         only: master
