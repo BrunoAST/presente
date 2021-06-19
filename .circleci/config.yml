@@ -8,7 +8,6 @@ jobs:
     build-job:
         docker:
             - image: cimg/node:15.0.1-browsers
-            # - image: 'cimg/node:13.12-browser'
 
         working_directory: ~/presente
 
@@ -61,6 +60,9 @@ workflows:
     -deploy:
         jobs:
             - heroku/deploy-via-git
+            - deploy-job:
+                requires:
+                    - build-job
 filters:
     branches:
         only: master
