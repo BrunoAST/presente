@@ -40,12 +40,12 @@ jobs:
             # run tests!
             - run: npm run test-ci
 
-    deploy-job:
-        executor: heroku/default
-        steps:
-            - checkout
-            - heroku/install
-            - run: heroku/deploy-via-git
+    # deploy-job:
+    #     executor: heroku/default
+    #     steps:
+    #         - checkout
+    #         - heroku/install
+    #         - run: heroku/deploy-via-git
 
 workflows:
     version: 2
@@ -53,16 +53,12 @@ workflows:
     -build:
         jobs:
             - build-job
-            # - deploy-job:
-            #       requires:
-            #           - build-job
-
-    -deploy:
-        jobs:
-            - heroku/deploy-via-git
-            - deploy-job:
+            - heroku/deploy-via-git:
+                api-key: HEROKU_API_KEY 
+                app-name: HEROKU_APP_NAME
                 requires:
                     - build-job
+            
 filters:
     branches:
         only: master
